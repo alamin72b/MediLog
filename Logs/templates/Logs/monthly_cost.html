@@ -1,0 +1,43 @@
+{% extends 'Logs/base.html' %}
+{% load mathfilters %}
+
+{% block title %}Monthly Cost{% endblock %}
+
+{% block content %}
+    <h2>Cost for {{ month }}</h2>
+    
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">View Cost</button>
+    </form>
+    
+    <p>Total Cost: ${{ total_cost|floatformat:2 }}</p>
+    
+    {% if purchases %}
+        <h3>Details</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Medicine</th>
+                    <th>Quantity</th>
+                    <th>Price/Unit</th>
+                    <th>Total for Purchase</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for purchase in purchases %}
+                    <tr>
+                        <td>{{ purchase.medicine.name }}</td>
+                        <td>{{ purchase.bought_quantity }}</td>
+                        <td>{{ purchase.price_per_unit }}</td>
+                        <td>{{ purchase.bought_quantity|mul:purchase.price_per_unit|floatformat:2 }}</td>
+                        <td>{{ purchase.purchase_date }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No purchases in {{ month }}.</p>
+    {% endif %}
+{% endblock %}

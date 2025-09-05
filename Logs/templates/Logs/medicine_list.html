@@ -1,0 +1,43 @@
+{% extends 'Logs/base.html' %}
+
+{% block title %}Medicines{% endblock %}
+
+{% block content %}
+    <h2>Medicines</h2>
+    {% if medicines %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Available Qty</th>
+                    <th>Default Price/Unit</th>
+                    <th>Morning (Dose/Timing)</th>
+                    <th>Lunch (Dose/Timing)</th>
+                    <th>Dinner (Dose/Timing)</th>
+                    <th>Purchases</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medicine in medicines %}
+                    <tr>
+                        <td>{{ medicine.name }}</td>
+                        <td>{{ medicine.available_quantity }}</td>
+                        <td>{{ medicine.price_per_unit }}</td>
+                        <td>{{ medicine.morning_dose }} / {{ medicine.get_morning_timing_display }}</td>
+                        <td>{{ medicine.lunch_dose }} / {{ medicine.get_lunch_timing_display }}</td>
+                        <td>{{ medicine.dinner_dose }} / {{ medicine.get_dinner_timing_display }}</td>
+                        <td>
+                            {% for purchase in medicine.purchases.all %}
+                                {{ purchase.bought_quantity }} at {{ purchase.price_per_unit }} on {{ purchase.purchase_date }}<br>
+                            {% empty %}
+                                No purchases
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No medicines available.</p>
+    {% endif %}
+{% endblock %}

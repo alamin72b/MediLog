@@ -1,4 +1,5 @@
 from django.contrib import admin
-from .models import MedicineLog
+from .models import Medicine, PurchaseLog
 
-admin.site.register(MedicineLog)
+admin.site.register(Medicine)
+admin.site.register(PurchaseLog)

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Logs', #The app for Keep track of the medicine
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
