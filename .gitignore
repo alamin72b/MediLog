@@ -1,0 +1,18 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+db.sqlite3  # If using SQLite; remove if you want to commit the DB
+migrations/  # Optional: ignore auto-generated migrations initially
+
+# OS files
+.DS_Store
+Thumbs.db
